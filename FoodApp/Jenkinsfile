@@ -26,7 +26,7 @@ pipeline{
    }
    stage('push'){
     steps{
-     sh 'docker push gcr.io/gj-playground/food-app:yum'
+     sh 'docker push gcr.io/gj-playground/food-app:yum' 
     }
    }
  }
