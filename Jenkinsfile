@@ -8,6 +8,11 @@ pipeline{
    }
    stage('Build'){
     steps{
+     sh "pwd"
+      dir('FoodAppCore/FoodApp') {
+        sh "pwd"
+    }
+     sh "pwd"
      sh 'docker build -t gcr.io/gj-playground/food-app:yum .'
     }
    }
