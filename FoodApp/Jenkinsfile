@@ -13,6 +13,8 @@ pipeline{
         sh "pwd"
     }
      sh "pwd"
+     sh "dotnet restore"
+     sh "dotnet publish -o app"
      sh 'docker build -t gcr.io/gj-playground/food-app:yum .'
     }
    }
