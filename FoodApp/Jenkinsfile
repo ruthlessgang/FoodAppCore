@@ -6,6 +6,10 @@ pipeline{
       checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'a8df228b-021f-4554-8c9c-18777bde22f7', url: 'git@github.com:bhavanaadmin/FoodAppCore.git']]])
     }
    }
+   stage('Initialize'){
+       def dockerHome = tool 'myDocker'
+       env.PATH = "${dockerHome}/bin:${env.PATH}"
+   }
    stage('Build'){
     steps{
      sh "pwd"
