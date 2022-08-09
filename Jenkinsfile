@@ -22,9 +22,16 @@ spec:
     stage("Pushing Image to GCR") {
       steps {
         container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  gcr.io/gj-playground/food-app . "
+          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t  gcr.io/gj-playground/food-app:latest ."
           }
         }
       }
+    stage('Deploy App') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
+        }
+      }
+    }
    }
 }
