@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: food-app
+  labels:
+    app: food-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: food-app
+  template:
+    metadata:
+      labels:
+        app: food-app
+    spec:
+      containers:
+      - name: food-app
+        image: gcr.io/gj-playground/food-app:latest
+        ports:
+        - containerPort: 80
+ 
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: food-app
+spec:
+  selector:
+    app: food-app
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
